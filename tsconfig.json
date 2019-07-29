@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+		"suppressImplicitAnyIndexErrors": true,
+		"noImplicitReturns": true,
+		// "noUnusedLocals": true,
+		"noImplicitThis": true,
+		"alwaysStrict": true,
+		"strictBindCallApply": true,
+		
+		"forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    
+    "experimentalDecorators": true,
+    "jsx": "preserve",
+    // "noImplicitAny": true,
+    "target": "es6",
+    "module": "commonjs",
+    "lib": [
+      "dom",
+      "es7",
+      "es2015.iterable"
+    ],
+    "removeComments": true,
+		"preserveConstEnums": true,
+		"sourceMap": false,
+    "outDir": "../out",
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+			"src/*": ["src/*"]
+		},
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "./test/**/*",
+	],
+  "exclude": [
+    "node_modules",
+    "lib",
+    "es",
+  ]
+}

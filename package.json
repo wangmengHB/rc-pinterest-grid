@@ -1,0 +1,44 @@
+{
+  "name": "rc-pinterest-layout",
+  "version": "0.0.1-rc1",
+  "description": "react component pinterest layout",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config ./build/webpack.prod.conf.js",
+    "watch": "webpack --watch --config ./build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --inline --progress --config ./build/webpack.dev.conf.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangmengHB/rc-pinterest-layout.git"
+  },
+  "keywords": [
+    "pinterest"
+  ],
+  "author": "Meng Wang <wangmeng_hb@163.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wangmengHB/rc-pinterest-layout/issues"
+  },
+  "homepage": "https://github.com/wangmengHB/rc-pinterest-layout#readme",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel": "^6.23.0",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.1.0",
+    "html-webpack-plugin": "^3.2.0",
+    "less": "^3.9.0",
+    "less-loader": "^5.0.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "style-loader": "^0.23.1",
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.5.3",
+    "webpack": "^4.38.0",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.7.2",
+    "webpack-merge": "^4.2.1"
+  }
+}
