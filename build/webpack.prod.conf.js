@@ -4,8 +4,9 @@ const merge = require('webpack-merge')
 const config = merge(base, {
     mode: 'production',
     optimization: {
-        minimize: true
+      minimize: true
     },
+    externals: ['react', 'react-dom'],
 })
 
 module.exports = config

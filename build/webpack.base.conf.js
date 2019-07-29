@@ -4,7 +4,7 @@ const path = require('path')
 module.exports = {
     context: path.resolve(__dirname, '../'),
     entry: {
-        'common-util': path.resolve(__dirname, '../src/index')
+      'PinterestGrid': path.resolve(__dirname, '../src/index')
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
