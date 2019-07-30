@@ -2,6 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const base = require('./webpack.base.conf.js')
+const path = require('path');
 
 const config = merge(base, {
   entry: {

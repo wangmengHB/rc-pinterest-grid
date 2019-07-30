@@ -1,4 +1,7 @@
-export { default as PinterestGrid } from './Pinterest/Grid';
+import PinterestGrid from './Grid';
+
+export default PinterestGrid;
+
 
 
 

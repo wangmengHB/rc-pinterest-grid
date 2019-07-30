@@ -1,11 +1,19 @@
+import ResizeObserverPolyfill from 'resize-observer-polyfill';
 import * as React from 'react';
 import doLayout from './doLayout';
+
+// as for now, ResizeObserver is only supported in chrome
+// in other browser, we need polyfill.
+const ResizeObserver = (window as any).ResizeObserver || ResizeObserverPolyfill;
+
 
 export interface PinterestGridProps {
   columnWidth: number;
   columns: number;
   gutterWidth: number;
   gutterHeight: number;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 interface PinterestGridState {
@@ -24,9 +32,9 @@ export default class PinterestGrid extends React.PureComponent<PinterestGridProp
     gridHeight: 0,
   }
 
-  wrappedRefs: any = [];
+  wrappedRefs: any[] = [];
 
-  private resizeObserver = new (window as any).ResizeObserver(entries => {
+  private resizeObserver = new ResizeObserver(entries => {
     const { wrappedItems } = this.state;
     const { columnWidth, gutterWidth, gutterHeight, columns } = this.props;
     if (this.wrappedRefs.length !== wrappedItems.length) {
@@ -67,17 +75,24 @@ export default class PinterestGrid extends React.PureComponent<PinterestGridProp
     });
   }
 
+  componentWillUnmount() {
+    this.resizeObserver.disconnect();
+  }
+
 
   createWrappedItems = (children) => {   
     const items = React.Children.toArray(children);  
     const wrappedItems = items.map((item: any, index: number) => {
+      console.log(item.props);
       return (
         <div 
           ref={ (_) => {
-            this.wrappedRefs[index] = _ ;
-            this.resizeObserver.observe(_);
+            if (_) {
+              this.wrappedRefs[index] = _ ;
+              this.resizeObserver.observe(_);
+            }
           }}
-          key={item.key}
+          key={item.key || `pinterest-${index}`}
           {...item.props} 
         >
           {item}
@@ -87,19 +102,19 @@ export default class PinterestGrid extends React.PureComponent<PinterestGridProp
     return wrappedItems;
   }
 
-  
-
   render() {    
     const { gridWidth, gridHeight, positions, wrappedItems } = this.state;
-    const { columnWidth } = this.props;
-    
+    const { columnWidth, style, className } = this.props;  
     return (
-      <div style={{
-        position: 'relative',
-        width: gridWidth,
-        height: gridHeight,
-        border: 'solid 5px',
-      }}>
+      <div 
+        style={{
+          ...style,
+          position: 'relative',
+          width: gridWidth,
+          height: gridHeight,        
+        }}
+        className={className}
+      >
         {
           wrappedItems.map((item, index) => {
             return React.cloneElement(item, {
@@ -107,9 +122,8 @@ export default class PinterestGrid extends React.PureComponent<PinterestGridProp
                 position: 'absolute',
                 left: positions[index][0],
                 top: positions[index][1],
-                border: 'solid 1px red',
                 width: columnWidth,
-                overflow: 'hidden',
+                transition: 'all 1s ease',
               }
             })
           })
