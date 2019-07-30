@@ -9,12 +9,13 @@ const columns = 4;
 const columnWidth = 200;
 const gutterWidth = 10;
 const gutterHeight = 20;
+const COUNT = 5;
 
 
-const createRandomBlock = (key, props: any) => {
+const createRandomBlock = (key: string | number, props: any): any => {
   const str = 'this is  a test txt';
   return (
-    <div key={key} data-height={50} {...props} style={{border: 'solid 1px red'}}>
+    <div key={key} {...props} style={{border: 'solid 1px red'}}>
       <div>
         {str.repeat(Math.floor(Math.random()* 5))}
       </div>
@@ -26,7 +27,15 @@ const createRandomBlock = (key, props: any) => {
   );
 }
 
-const COUNT = 5;
+let uid = 0;
+function addRandomBlock(count: number) {
+  const res: any = [];
+  for (let i = 0; i < count; i++) {
+    res.push(createRandomBlock(uid++, {height: 1000}));
+  }
+  return res;
+}
+
 
 class Demo extends React.PureComponent {
 
@@ -67,14 +76,7 @@ class Demo extends React.PureComponent {
   }
 }
 
-let uid = 0;
-function addRandomBlock(count) {
-  const res = [];
-  for (let i = 0; i < count; i++) {
-    res.push(createRandomBlock(uid++, {height: 1000}));
-  }
-  return res;
-}
+
 
 
 

@@ -1,16 +1,16 @@
 {
   "compilerOptions": {
     "skipLibCheck": true,
-    // "strictNullChecks": true,
+    "strictNullChecks": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "jsx": "preserve",
-    // "noImplicitAny": true,
+    "noImplicitAny": true,
     "target": "es6",
     "module": "commonjs",
     "lib": [
       "dom",
-      "es5"
+      "es7"
     ],
     "removeComments": false,
 		"preserveConstEnums": true,
