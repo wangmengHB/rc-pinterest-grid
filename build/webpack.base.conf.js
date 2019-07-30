@@ -4,14 +4,14 @@ const path = require('path')
 module.exports = {
     context: path.resolve(__dirname, '../'),
     entry: {
-      'PinterestGrid': path.resolve(__dirname, '../src/index')
+      'pinterest-grid': path.resolve(__dirname, '../src/index')
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
         filename: '[name].js',
         publicPath: '/',
         libraryTarget: 'umd',
-        library: 'CommonUtil'
+        library: 'PinterestGrid'
     },
     resolve: {
       extensions: ['.ts', '.js', '.tsx', '.jsx', '.json'],
@@ -52,11 +52,11 @@ module.exports = {
         ]
     },
     node: {
-        setImmediate: false,
-        dgram: 'empty',
-        fs: 'empty',
-        net: 'empty',
-        tls: 'empty',
-        child_process: 'empty'
+      setImmediate: false,
+      dgram: 'empty',
+      fs: 'empty',
+      net: 'empty',
+      tls: 'empty',
+      child_process: 'empty'
     }
 }

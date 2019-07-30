@@ -31,7 +31,7 @@ let uid = 0;
 function addRandomBlock(count: number) {
   const res: any = [];
   for (let i = 0; i < count; i++) {
-    res.push(createRandomBlock(uid++, {height: 1000}));
+    res.push(createRandomBlock(uid++, {}));
   }
   return res;
 }
@@ -66,7 +66,7 @@ class Demo extends React.PureComponent {
           { list }
         </PinterestGrid>
         <button 
-          style={{ position: 'fixed', top: 100, right: 200, fontSize: 48}} 
+          style={{ position: 'fixed', top: 100, right: 200, fontSize: 30}} 
           onClick={this.addMore}
         >
           追加记录

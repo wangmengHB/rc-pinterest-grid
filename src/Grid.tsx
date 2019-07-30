@@ -1,6 +1,6 @@
 import ResizeObserverPolyfill from 'resize-observer-polyfill';
 import * as React from 'react';
-import doLayout from './doLayout';
+import doLayout from './layout';
 
 // as for now, ResizeObserver is only supported in chrome
 // in other browser, we need polyfill.
@@ -51,7 +51,7 @@ export default class PinterestGrid extends React.PureComponent<PinterestGridProp
       wrappedItems,
       ...doLayout(
         // initial height is from props if any
-        wrappedItems.map(item => item.props.height), 
+        wrappedItems.map(item => item.props.height || INITIAL_HEIGHT), 
         { columnWidth, gutterWidth, gutterHeight, columns }
       )
     } as PinterestGridState)  
@@ -64,7 +64,7 @@ export default class PinterestGrid extends React.PureComponent<PinterestGridProp
       wrappedItems,     
       ...doLayout(
         // initial height is from props if any
-        wrappedItems.map(item => item.props.height), 
+        wrappedItems.map(item => item.props.height || INITIAL_HEIGHT), 
         { columnWidth, gutterWidth, gutterHeight, columns }
       )
     });
@@ -83,7 +83,7 @@ export default class PinterestGrid extends React.PureComponent<PinterestGridProp
       // provide a big inital height, in order to make every item
       // showing from bottom to up. 
       const props = {
-        height: INITIAL_HEIGHT
+        height: item.props.height || INITIAL_HEIGHT
       }
       return (
         <div 
@@ -124,7 +124,7 @@ export default class PinterestGrid extends React.PureComponent<PinterestGridProp
                 left: positions[index][0],
                 top: positions[index][1],
                 width: columnWidth,
-                transition: 'all 1s ease',
+                transition: 'top 1s ease',              
               }
             })
           })

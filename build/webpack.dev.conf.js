@@ -6,7 +6,7 @@ const path = require('path');
 
 const config = merge(base, {
   entry: {
-    'PinterestGrid': path.resolve(__dirname, '../src/test.tsx')
+    'PinterestGrid': path.resolve(__dirname, '../src/demo.tsx')
   },
   mode: 'development',
   watch: true,
@@ -27,7 +27,7 @@ const config = merge(base, {
   },
   plugins: [
       new HtmlWebpackPlugin({
-          title: 'test util function'
+          title: 'Pinterest Grid Demo'
       }),
       new webpack.HotModuleReplacementPlugin()
   ]

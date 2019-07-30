@@ -1,13 +1,16 @@
 {
-  "name": "rc-pinterest-grid",
+  "name": "@mengd/rc-pinterest-grid",
   "version": "0.0.1-rc.1",
   "description": "react component pinterest layout",
-  "main": "index.js",
+  "main": "src/index.tsx",
+  "files": [
+    "dist",
+    "src"   
+  ],
   "scripts": {
     "build": "webpack --config ./build/webpack.prod.conf.js",
     "watch": "webpack --watch --config ./build/webpack.dev.conf.js",
-    "dev": "webpack-dev-server --inline --progress --config ./build/webpack.dev.conf.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack-dev-server --inline --progress --config ./build/webpack.dev.conf.js"
   },
   "repository": {
     "type": "git",
