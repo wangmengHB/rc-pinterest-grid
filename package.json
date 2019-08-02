@@ -2,7 +2,7 @@
   "name": "@mengd/rc-pinterest-grid",
   "version": "0.0.1-rc.1",
   "description": "react component pinterest layout",
-  "main": "src/index.tsx",
+  "main": "dist/pinterest-grid.js",
   "files": [
     "dist",
     "src"   
@@ -22,9 +22,9 @@
   "author": "Meng Wang <wangmeng_hb@163.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wangmengHB/rc-pinterest-layout/issues"
+    "url": "https://github.com/wangmengHB/rc-pinterest-grid/issues"
   },
-  "homepage": "https://github.com/wangmengHB/rc-pinterest-layout#readme",
+  "homepage": "https://github.com/wangmengHB/rc-pinterest-grid#readme",
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
