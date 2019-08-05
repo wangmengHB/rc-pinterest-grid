@@ -12,7 +12,7 @@ export default function doLayout(itemsHeight: number[], props: layoutProps) {
     columns, columnWidth, gutterWidth, gutterHeight
   } = props;
   // create an array to record each column's total height.
-  const columnHeights = new Float32Array(columns);
+  const columnHeights = Array.from(new Float32Array(columns));
   
   const positions: any[] = itemsHeight.map((itemHeight) => {
     const index = columnHeights.indexOf(Math.min.apply(null, columnHeights));

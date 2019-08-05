@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import PinterestGrid from './index';
+import PinterestGrid, { ResponsivePinterestGrid } from './index';
 
 const root = document.createElement('div');
 document.body.appendChild(root);
@@ -10,11 +10,13 @@ const columnWidth = 200;
 const gutterWidth = 10;
 const gutterHeight = 20;
 const COUNT = 5;
-
-
-
 const str = 'this is  a test txt. ';
-class TestBlock extends React.Component{
+
+interface TestBlockProps {
+  index: number;
+}
+
+class TestBlock extends React.Component<TestBlockProps>{
   state = {
     count: 0,
     header: str.repeat(Math.floor(Math.random()* 5)),
@@ -26,17 +28,25 @@ class TestBlock extends React.Component{
     this.setState({count: count + 1})
   }
 
+  deleteRow = () => {
+    const { count } = this.state;
+    if (count > 0) {
+      this.setState({count: count - 1})
+    }
+  }
+
   render() {
     const { count, header, body } = this.state;
 
     const rows: any[] = [];
     for (let i = 0; i < count; i++) {
       rows.push((<div key={i}>{i} row</div>));
-    }
-
-    
+    }    
     return (
       <div {...this.props} style={{border: 'solid 1px red'}}>
+      <div style={{fontSize: 20, color: 'blue'}}>
+        {this.props.index}
+      </div>
       <div>
         {header}
       </div>
@@ -46,6 +56,7 @@ class TestBlock extends React.Component{
       </div>
       <div>
         <button onClick={this.addRow}>Add row</button>
+        <button onClick={this.deleteRow}>Delete row</button>
       </div>
       {
         rows
@@ -56,10 +67,9 @@ class TestBlock extends React.Component{
   }
 }
 
-const createRandomBlock = (key: string | number, props: any): any => {
-  
+function createRandomBlock(key: string | number, props: any): any {
   return (
-    <TestBlock key={key} {...props}/>
+    <TestBlock key={key} index={key} {...props}/>
   );
 }
 
@@ -98,15 +108,15 @@ class Demo extends React.PureComponent {
     const { list } = this.state;
     return (
       <div>
-        <PinterestGrid 
-          style={{border: 'solid 2px black'}} 
+        <ResponsivePinterestGrid 
+          style={{border: 'solid 2px black', margin: '0 auto'}} 
           columns={columns} 
           columnWidth={columnWidth} 
           gutterWidth={gutterWidth} 
           gutterHeight={gutterHeight}
         >
           { list }
-        </PinterestGrid>
+        </ResponsivePinterestGrid>
         <button 
           style={{ position: 'fixed', top: 100, right: 200, fontSize: 30}} 
           onClick={this.addMore}
