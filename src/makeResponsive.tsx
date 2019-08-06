@@ -1,6 +1,6 @@
 import * as React from 'react';
 const enquire = require('enquire.js');
-import { PinterestGridProps } from './grid'
+import PinterestGrid, { PinterestGridProps } from './grid'
 
 const MAX_WIDTH = 5000;
 
@@ -10,10 +10,13 @@ export interface ResponsiveProps {
   defaultColumns?: number;
 }
 
-
 export default function makeResponsive (
-  Grid: any, 
-  { maxWidth = MAX_WIDTH, minPadding = 100, defaultColumns = 4 }: ResponsiveProps = {}
+  Grid: typeof PinterestGrid, 
+  { 
+    maxWidth = MAX_WIDTH, 
+    minPadding = 100, 
+    defaultColumns = 4 
+  }: ResponsiveProps = {}
 ): any {
   return class extends React.PureComponent<PinterestGridProps> {
     static defaultProps = {

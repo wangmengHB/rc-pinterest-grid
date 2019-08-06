@@ -1,13 +1,15 @@
 import ResizeObserverPolyfill from 'resize-observer-polyfill';
 import * as React from 'react';
-import doLayout from './layout';
+import doLayout, { Position } from './layout';
 
 // as for now, ResizeObserver is only supported in chrome
 // in other browser, we need polyfill.
 const ResizeObserver = (window as any).ResizeObserver || ResizeObserverPolyfill;
 
 const INITIAL_HEIGHT = 700;
-const CSS_TRANSITION = 'left 300ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s, top 800ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s';
+const CSS_TRANSITION = 
+  'left 300ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s,' + 
+  'top 800ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s';
 
 export interface PinterestGridProps {
   columnWidth: number;
@@ -20,7 +22,7 @@ export interface PinterestGridProps {
 }
 
 interface PinterestGridState {
-  positions: any[];
+  positions: Position[];
   wrappedItems: any[];
   gridWidth: number;
   gridHeight: number;

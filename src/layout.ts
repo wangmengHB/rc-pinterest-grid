@@ -7,6 +7,8 @@ export interface layoutProps {
   gutterHeight: number;
 }
 
+export type Position = [number, number];
+
 export default function doLayout(itemsHeight: number[], props: layoutProps) {
   const {
     columns, columnWidth, gutterWidth, gutterHeight
@@ -14,7 +16,7 @@ export default function doLayout(itemsHeight: number[], props: layoutProps) {
   // create an array to record each column's total height.
   const columnHeights = Array.from(new Float32Array(columns));
   
-  const positions: any[] = itemsHeight.map((itemHeight) => {
+  const positions: Position[] = itemsHeight.map((itemHeight) => {
     const index = columnHeights.indexOf(Math.min.apply(null, columnHeights));
     // if height is not provided, use default height.
     const height = itemHeight || defaultHeight;
