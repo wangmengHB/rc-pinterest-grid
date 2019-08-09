@@ -3,12 +3,13 @@
   "version": "0.0.1-rc.1",
   "description": "react component pinterest layout",
   "main": "dist/pinterest-grid.js",
+  "module": "lib/index.js",
   "files": [
     "dist",
-    "src"
+    "lib"
   ],
   "scripts": {
-    "build": "webpack --config ./build/webpack.prod.conf.js",
+    "build": "rm -rf lib && rm -rf dist && tsc -declaration & webpack --config ./build/webpack.prod.conf.js",
     "watch": "webpack --watch --config ./build/webpack.dev.conf.js",
     "dev": "webpack-dev-server --inline --progress --config ./build/webpack.dev.conf.js"
   },
