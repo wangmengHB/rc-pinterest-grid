@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import PinterestGrid, { ResponsivePinterestGrid } from './index';
+import PinterestGrid from './index';
 
 const root = document.createElement('div');
 document.body.appendChild(root);
@@ -108,15 +108,16 @@ class Demo extends React.PureComponent {
     const { list } = this.state;
     return (
       <div>
-        <ResponsivePinterestGrid 
+        <PinterestGrid 
           style={{border: 'solid 2px black', margin: '0 auto'}} 
           columns={columns} 
           columnWidth={columnWidth} 
           gutterWidth={gutterWidth} 
           gutterHeight={gutterHeight}
+          responsive={true}
         >
           { list }
-        </ResponsivePinterestGrid>
+        </PinterestGrid>
         <button 
           style={{ position: 'fixed', top: 100, right: 200, fontSize: 30}} 
           onClick={this.addMore}

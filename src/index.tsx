@@ -2,8 +2,7 @@ import PinterestGrid from './Grid';
 import makeResponsive from './makeResponsive';
 
 
-export default PinterestGrid;
+export default makeResponsive(PinterestGrid);
 
-export const ResponsivePinterestGrid = makeResponsive(PinterestGrid);
 
 

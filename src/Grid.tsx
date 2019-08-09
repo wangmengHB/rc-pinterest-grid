@@ -8,14 +8,27 @@ const ResizeObserver = (window as any).ResizeObserver || ResizeObserverPolyfill;
 
 const INITIAL_HEIGHT = 700;
 const CSS_TRANSITION = 
-  'left 300ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s,' + 
-  'top 800ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s';
+  'left 500ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s,' + 
+  'top 700ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s';
+
+const DEFAULT_COLUMNS = 4;
+const DEFAULT_COLUMN_WIDTH = 200;
+const DEFAULT_GUTTER = 10; 
+
+export interface BreakPoint{
+  minScreenWidth: number;
+  maxSceenWidth: number;
+  columnWidth: number;
+  columns: number;
+}
 
 export interface PinterestGridProps {
   columnWidth: number;
   columns: number;
   gutterWidth: number;
   gutterHeight: number;
+  responsive?: boolean;
+  breakPoints?: BreakPoint[];
   style?: React.CSSProperties;
   className?: string;
   children?: React.ReactChildren;
@@ -29,6 +42,13 @@ interface PinterestGridState {
 }
 
 export default class PinterestGrid extends React.PureComponent<PinterestGridProps, PinterestGridState> {
+
+  static defaultProps = {
+    columns: DEFAULT_COLUMNS,
+    columnWidth: DEFAULT_COLUMN_WIDTH,
+    gutterWidth: DEFAULT_GUTTER,
+    gutterHeight: DEFAULT_GUTTER,
+  }
 
   wrappedRefs: any[] = [];
 
@@ -133,7 +153,9 @@ export default class PinterestGrid extends React.PureComponent<PinterestGridProp
           position: 'relative',
           width: gridWidth,
           height: gridHeight,
-          boxSizing: 'content-box',        
+          boxSizing: 'content-box',
+          marginLeft: 'auto',
+          marginRight: 'auto',              
         }}
         className={className}
       >
