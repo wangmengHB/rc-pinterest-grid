@@ -9,7 +9,7 @@ const columns = 4;
 const columnWidth = 200;
 const gutterWidth = 10;
 const gutterHeight = 20;
-const COUNT = 5;
+const COUNT = 10;
 const str = 'this is  a test txt. ';
 
 interface TestBlockProps {
@@ -114,7 +114,7 @@ class Demo extends React.PureComponent {
     return (
       <div>
         <PinterestGrid 
-          style={{border: 'solid 2px black', margin: '0 auto'}} 
+          style={{margin: '0 auto'}} 
           columns={columns} 
           columnWidth={columnWidth} 
           gutterWidth={gutterWidth} 

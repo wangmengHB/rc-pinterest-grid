@@ -5,6 +5,8 @@
 3. 支持自动响应式。
 4. 支持精确自定义响应式布局。
 
+![demo1](https://github.com/wangmengHB/rc-pinterest-grid/blob/master/images/demo1.png)
+
 # 安装
 ```
 npm install --S rc-pinterest-grid
@@ -25,8 +27,8 @@ npm install --S rc-pinterest-grid
 | columnWidth | 瀑布流中每个块的宽度 | number | true | 200 |
 | gutterWidth | 块之间的水平间隙 | number | false  | 10     |
 | gutterHeight | 块之间的上下间隙 | number | false | 10  |
-| responsive  | 是否需要页面响应式  | boolean  | false  | 无    |
-| breakPoints | 自定义页面断点对象列表，只有当 responsive 参数存在时生效 | BreakPoint[] | undefined | false   |   无   |
+| responsive  | 是否需要页面响应式  | boolean  | false  | false    |
+| breakPoints | 自定义页面断点对象列表，只有当 responsive 参数存在时生效 | `BreakPoint[] | undefined` | false   |   无   |
 
 说明： 当 responsive 为 true 时，如果不提供自定义的断点列表 breakPoints, 则按照默认的方法计算页面的响应式。当 responsive 为 true 并且 breakPoints 存在时，按照自定义的响应式进行布局。
 
@@ -45,7 +47,36 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PinterestGrid from 'rc-pinterest-grid';
 
-const list = [1,2,3,4];
+const list = [1,2,3,4,5,6,7,8,9,10,11,12];
+
+const Demo = () => (
+  <PinterestGrid
+    columns={columns}             // 一共有多少列
+    columnWidth={columnWidth}     // 列宽度
+    gutterWidth={gutterWidth}     // 块之间的水平间隙
+    gutterHeight={gutterHeight}   // 块之间的上下间隙
+  >
+    { // 此处放置需要渲染的块
+      list.map((item, index) => (
+        <div key={index} className={...} style={...}>
+          ...
+        </div>
+      ))
+    }
+  </PinterestGrid>
+)
+
+ReactDOM.render(<Demo />, root);
+
+```
+
+# 使用示例 2：自动响应式
+```jsx
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import PinterestGrid from 'rc-pinterest-grid';
+
+const list = [1,2,3,4,5,6,7,8,9,10,11,12];
 
 const Demo = () => (
   <PinterestGrid
@@ -57,19 +88,48 @@ const Demo = () => (
   >
     { // 此处放置需要渲染的块
       list.map((item, index) => (
-        <div key={index}>{item} </div>
+        <div key={index} className={...} style={...}>
+          ...
+        </div>
       ))
     }
   </PinterestGrid>
 )
 
 ReactDOM.render(<Demo />, root);
-
 ```
-
-# 使用示例 2：自动响应式
+![demo2](https://github.com/wangmengHB/rc-pinterest-grid/blob/master/images/demo1.png)
+![demo3](https://github.com/wangmengHB/rc-pinterest-grid/blob/master/images/demo1.png)
 
 
 # 使用示例 3: 自定义响应式
+```jsx
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import PinterestGrid from 'rc-pinterest-grid';
+
+const list = [1,2,3,4,5,6,7,8,9,10,11,12];
+
+const Demo = () => (
+  <PinterestGrid
+    columns={columns}             // 一共有多少列
+    columnWidth={columnWidth}     // 列宽度
+    gutterWidth={gutterWidth}     // 块之间的水平间隙
+    gutterHeight={gutterHeight}   // 块之间的上下间隙
+    responsive={true}             // 是否响应式
+  >
+    { // 此处放置需要渲染的块
+      list.map((item, index) => (
+        <div key={index} className={...} style={...}>
+          ...
+        </div>
+      ))
+    }
+  </PinterestGrid>
+)
+
+ReactDOM.render(<Demo />, root);
+```
+
 
 
