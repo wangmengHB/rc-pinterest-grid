@@ -51,10 +51,10 @@ const list = [1,2,3,4,5,6,7,8,9,10,11,12];
 
 const Demo = () => (
   <PinterestGrid
-    columns={columns}             // 一共有多少列
-    columnWidth={columnWidth}     // 列宽度
-    gutterWidth={gutterWidth}     // 块之间的水平间隙
-    gutterHeight={gutterHeight}   // 块之间的上下间隙
+    columns={4}             // 一共有多少列
+    columnWidth={200}     // 列宽度
+    gutterWidth={10}     // 块之间的水平间隙
+    gutterHeight={10}   // 块之间的上下间隙
   >
     { // 此处放置需要渲染的块
       list.map((item, index) => (
@@ -80,10 +80,10 @@ const list = [1,2,3,4,5,6,7,8,9,10,11,12];
 
 const Demo = () => (
   <PinterestGrid
-    columns={columns}             // 一共有多少列
-    columnWidth={columnWidth}     // 列宽度
-    gutterWidth={gutterWidth}     // 块之间的水平间隙
-    gutterHeight={gutterHeight}   // 块之间的上下间隙
+    columns={4}             // 一共有多少列
+    columnWidth={200}     // 列宽度
+    gutterWidth={10}     // 块之间的水平间隙
+    gutterHeight={10}   // 块之间的上下间隙
     responsive={true}             // 是否响应式
   >
     { // 此处放置需要渲染的块
@@ -110,13 +110,36 @@ import PinterestGrid from 'rc-pinterest-grid';
 
 const list = [1,2,3,4,5,6,7,8,9,10,11,12];
 
+// 自定义断点，更精确地定义断点布局，不同的断点下可以重新定义列数和列宽度。
+const breakPoints = [
+  {
+    minScreenWidth: 0,
+    maxScreenWidth: 300,
+    columns: 1,
+    columnWidth: 200,
+  },
+  {
+    minScreenWidth: 300,
+    maxScreenWidth: 900,
+    columns: 2,
+    columnWidth: 300,
+  },
+  {
+    minScreenWidth: 900,
+    maxScreenWidth: Infinity,
+    columns: 3,
+    columnWidth: 600,
+  },
+]
+
 const Demo = () => (
   <PinterestGrid
-    columns={columns}             // 一共有多少列
-    columnWidth={columnWidth}     // 列宽度
-    gutterWidth={gutterWidth}     // 块之间的水平间隙
-    gutterHeight={gutterHeight}   // 块之间的上下间隙
+    columns={4}            // 一共有多少列
+    columnWidth={200}      // 列宽度
+    gutterWidth={10}       // 块之间的水平间隙
+    gutterHeight={10}      // 块之间的上下间隙
     responsive={true}             // 是否响应式
+    breakPoints={breakPoints}     // 使用自定义断点模式
   >
     { // 此处放置需要渲染的块
       list.map((item, index) => (
