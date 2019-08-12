@@ -28,7 +28,7 @@ npm install --S rc-pinterest-grid
 | gutterWidth | 块之间的水平间隙 | number | false  | 10     |
 | gutterHeight | 块之间的上下间隙 | number | false | 10  |
 | responsive  | 是否需要页面响应式  | boolean  | false  | false    |
-| breakPoints | 自定义页面断点对象列表，只有当 responsive 参数存在时生效 | BreakPoint[]  &#124;undefined``` | false   |   无   |
+| breakPoints | 自定义页面断点对象列表，只有当 responsive 参数存在时生效 | BreakPoint[]  &#124; undefined | false   |   无   |
 
 说明： 当 responsive 为 true 时，如果不提供自定义的断点列表 breakPoints, 则按照默认的方法计算页面的响应式。当 responsive 为 true 并且 breakPoints 存在时，按照自定义的响应式进行布局。
 
