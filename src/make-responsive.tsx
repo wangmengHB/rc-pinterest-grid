@@ -61,7 +61,7 @@ export default function makeResponsive (
       
         return {
           breakpoint,
-          handler: () => {this.setState({columns, columnWidth}); console.log(columns)}
+          handler: () => this.setState({columns, columnWidth})
         }
       })
       
