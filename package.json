@@ -1,6 +1,6 @@
 {
   "name": "rc-pinterest-grid",
-  "version": "0.0.1-rc.2",
+  "version": "0.0.1-rc.3",
   "description": "react component pinterest layout",
   "main": "dist/pinterest-grid.js",
   "module": "lib/index.js",

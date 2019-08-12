@@ -28,7 +28,7 @@ npm install --S rc-pinterest-grid
 | gutterWidth | 块之间的水平间隙 | number | false  | 10     |
 | gutterHeight | 块之间的上下间隙 | number | false | 10  |
 | responsive  | 是否需要页面响应式  | boolean  | false  | false    |
-| breakPoints | 自定义页面断点对象列表，只有当 responsive 参数存在时生效 | ```BreakPoint[]|undefined``` | false   |   无   |
+| breakPoints | 自定义页面断点对象列表，只有当 responsive 参数存在时生效 | BreakPoint[]  &#124;undefined``` | false   |   无   |
 
 说明： 当 responsive 为 true 时，如果不提供自定义的断点列表 breakPoints, 则按照默认的方法计算页面的响应式。当 responsive 为 true 并且 breakPoints 存在时，按照自定义的响应式进行布局。
 
@@ -36,7 +36,7 @@ npm install --S rc-pinterest-grid
 | 参数     | 说明     | 类型     |  是否必需  | 默认值 |
 | :------- | :------- | :------- | :----- | :----- |
 | minScreenWidth | 该断点的最小页面宽度，第一个断点的最小页面宽度值应为 0 | number | true  | 无     |
-| maxSceenWidth | 该断点的最小页面宽度, 最后一个断点的最大页面宽度为 Infinity | number | true  | 无 |
+| maxScreenWidth | 该断点的最小页面宽度, 最后一个断点的最大页面宽度为 Infinity | number | true  | 无 |
 | columnWidth  | 在该断点下，每个块的宽度  | number  | true  | 无    |
 | columns | 在该断点下，布局的列数 | number | true   |   无   |
 

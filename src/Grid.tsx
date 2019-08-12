@@ -17,7 +17,7 @@ const DEFAULT_GUTTER = 10;
 
 export interface BreakPoint{
   minScreenWidth: number;
-  maxSceenWidth: number;
+  maxScreenWidth: number;
   columnWidth: number;
   columns: number;
 }

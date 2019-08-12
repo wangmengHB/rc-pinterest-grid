@@ -15,7 +15,7 @@ function createDefaultBreakPoints(columnWidth: number, gutterWidth: number): Bre
     const columns = i + 1;
     breakpoints.push({
       minScreenWidth: min,
-      maxSceenWidth: max,
+      maxScreenWidth: max,
       columnWidth,
       columns
     });
@@ -25,7 +25,7 @@ function createDefaultBreakPoints(columnWidth: number, gutterWidth: number): Bre
 
 function getCurrentPoint(breakpoints: BreakPoint[]): BreakPoint | undefined {
   const current  = document.body.clientWidth;
-  return breakpoints.find(brk => current > brk.minScreenWidth && current <= brk.maxSceenWidth);
+  return breakpoints.find(brk => current > brk.minScreenWidth && current <= brk.maxScreenWidth);
 }
 
 
@@ -52,11 +52,11 @@ export default function makeResponsive (
       }
 
       this.breakpoints = brkPoints.map((brk: BreakPoint) => {
-        const {columns, columnWidth, minScreenWidth, maxSceenWidth} = brk;   
+        const {columns, columnWidth, minScreenWidth, maxScreenWidth} = brk;   
         const breakpoint = [
           'screen', 
           minScreenWidth === 0? null: `(min-width: ${minScreenWidth}px)` , 
-          isFinite(maxSceenWidth)?`(max-width: ${maxSceenWidth}px)`: null,
+          isFinite(maxScreenWidth)?`(max-width: ${maxScreenWidth}px)`: null,
         ].filter(Boolean).join(' and ');
       
         return {

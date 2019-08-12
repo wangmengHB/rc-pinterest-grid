@@ -2,9 +2,6 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PinterestGrid from '../src/index';
 
-const root = document.createElement('div');
-document.body.appendChild(root);
-
 const columns = 4;
 const columnWidth = 200;
 const gutterWidth = 10;
@@ -144,7 +141,8 @@ class Demo extends React.PureComponent {
 
 
 
-
+const root = document.createElement('div');
+document.body.appendChild(root);
 ReactDOM.render(<Demo />, root);
 
 
