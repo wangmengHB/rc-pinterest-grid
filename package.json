@@ -1,9 +1,10 @@
 {
-  "name": "@mengd/rc-pinterest-grid",
+  "name": "rc-pinterest-grid",
   "version": "0.0.1-rc.1",
   "description": "react component pinterest layout",
   "main": "dist/pinterest-grid.js",
   "module": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "files": [
     "dist",
     "lib"
@@ -18,7 +19,7 @@
     "url": "git+https://github.com/wangmengHB/rc-pinterest-grid.git"
   },
   "keywords": [
-    "pinterest"
+    "pinterest", "react", "layout", "grid"
   ],
   "author": "Meng Wang <wangmeng_hb@163.com>",
   "license": "MIT",

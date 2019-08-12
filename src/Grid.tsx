@@ -153,9 +153,7 @@ export default class PinterestGrid extends React.PureComponent<PinterestGridProp
           position: 'relative',
           width: gridWidth,
           height: gridHeight,
-          boxSizing: 'content-box',
-          marginLeft: 'auto',
-          marginRight: 'auto',              
+          boxSizing: 'content-box',             
         }}
         className={className}
       >
