@@ -1,5 +1,5 @@
 import PinterestGrid from './Grid';
-import makeResponsive from './makeResponsive';
+import makeResponsive from './make-responsive';
 
 export {BreakPoint, PinterestGridProps} from './Grid';
 export default makeResponsive(PinterestGrid);

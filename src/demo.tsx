@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import PinterestGrid from './index';
+import PinterestGrid from '../src/index';
 
 const root = document.createElement('div');
 document.body.appendChild(root);
@@ -17,6 +17,11 @@ interface TestBlockProps {
 }
 
 class TestBlock extends React.Component<TestBlockProps>{
+  
+  static defaultProps = {
+    index: 0
+  }
+
   state = {
     count: 0,
     header: str.repeat(Math.floor(Math.random()* 5)),
