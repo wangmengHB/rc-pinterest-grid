@@ -12,7 +12,7 @@ npm install --S rc-pinterest-grid
 说明：  
 1. rc-pinterest-grid 依赖两个第三方npm：
   * resize-observer-polyfill, (ResizeObserver 的 Polyfill)  
-  * enquire.js (借助它实现相应式)
+  * enquire.js (借助它实现相应式)   
 在运行安装指令时，这两个依赖项会自动安装。  
 2. rc-pinterest-grid 是基于 react 的组件. 在使用环境中，用户应该在自己的工程中安装 react 和 react-dom。
 
@@ -20,13 +20,14 @@ npm install --S rc-pinterest-grid
 # 使用说明
 ### PinterestGrid 参数列表说明
 | 参数     | 说明     | 类型     |  是否必需  | 默认值 |
-| :------- | :------- | :------- | :----- | :----- |
-| columns | 是否展开，仅表单模式无需 | number | true  | 4     |
-| columnWidth | 用于Drawer、Modal标题 | number | false   | 无     |
-| gutterWidth | 素材，详情见下方 | Material | number  | {}     |
-| gutterHeight | 关联内容是否仅能阅读 | number | false | true  |
-| responsive  | 是否需要页面响应式  | number  | false  | 无    |
+| :----- | :------- | :------- | :----- | :----- |
+| columns | 瀑布流布局的列数 | number | true  | 4     |
+| columnWidth | 瀑布流中每个块的宽度 | number | true | 200 |
+| gutterWidth | 块之间的水平间隙 | number | false  | 10     |
+| gutterHeight | 块之间的上下间隙 | number | false | 10  |
+| responsive  | 是否需要页面响应式  | boolean  | false  | 无    |
 | breakPoints | 自定义页面断点对象列表，只有当 responsive 参数存在时生效 | BreakPoint[] | undefined | false   |   无   |
+
 说明： 当 responsive 为 true 时，如果不提供自定义的断点列表 breakPoints, 则按照默认的方法计算页面的响应式。当 responsive 为 true 并且 breakPoints 存在时，按照自定义的响应式进行布局。
 
 ### BreakPoint 对象
