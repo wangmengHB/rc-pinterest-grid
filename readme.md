@@ -5,7 +5,7 @@
 3. 支持自动响应式。
 4. 支持精确自定义响应式布局。
 
-![demo1](https://github.com/wangmengHB/rc-pinterest-grid/blob/master/images/demo1.png)
+![demo1](https://raw.githubusercontent.com/wangmengHB/rc-pinterest-grid/master/images/demo1.png)
 
 # 安装
 ```
@@ -98,8 +98,8 @@ const Demo = () => (
 
 ReactDOM.render(<Demo />, root);
 ```
-![demo2](https://github.com/wangmengHB/rc-pinterest-grid/blob/master/images/demo2.png)
-![demo3](https://github.com/wangmengHB/rc-pinterest-grid/blob/master/images/demo3.png)
+![demo2](https://raw.githubusercontent.com/wangmengHB/rc-pinterest-grid/master/images/demo2.png)
+![demo3](https://raw.githubusercontent.com/wangmengHB/rc-pinterest-grid/master/images/demo3.png)
 
 
 # 使用示例 3: 自定义响应式
