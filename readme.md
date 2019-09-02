@@ -44,7 +44,7 @@ import PinterestGrid from 'rc-pinterest-grid';
 | gutterWidth | horizontal gutter between each block | number | false  | 10     |
 | gutterHeight | vertical gutter between each block | number | false | 10  |
 | responsive  | whether to be responsive responding with the screen width  | boolean  | false  | false    |
-| breakPoints | self-defined break point list for responsive, it works only if responsive props exist | BreakPoint[]  &#124; undefined | false   |   无   |
+| breakPoints | self-defined break point list for responsive, it works only if responsive props exist | BreakPoint[]  &#124; undefined | false   |   None   |
 
 Note：
 1. when `responsive` is true, and `breakPoints` not provided, it will be responsive in the default way.   
@@ -54,10 +54,10 @@ Note：
 ### BreakPoint 
 | Prop Name     | Description     | Type     |  Required  | Default |
 | :------- | :------- | :------- | :----- | :----- |
-| minScreenWidth | min screen width for this break point，it should be 0 for first break point | number | true  | 无     |
-| maxScreenWidth | max screen width for this break point, it should be Infinity for last break point | number | true  | 无 |
-| columnWidth  | under this break point，the width for every block  | number  | true  | 无    |
-| columns | under this break point, how many columns should be placed in one row | number | true   |   无   |
+| minScreenWidth | min screen width for this break point，it should be 0 for first break point | number | true  | None     |
+| maxScreenWidth | max screen width for this break point, it should be Infinity for last break point | number | true  | None |
+| columnWidth  | under this break point，the width for every block  | number  | true  | None    |
+| columns | under this break point, how many columns should be placed in one row | number | true   |   None   |
 
 
 ## Use Case 1： simple usage
@@ -70,12 +70,12 @@ const list = [1,2,3,4,5,6,7,8,9,10,11,12];
 
 const Demo = () => (
   <PinterestGrid
-    columns={4}             // 一共有多少列
-    columnWidth={200}     // 列宽度
-    gutterWidth={10}     // 块之间的水平间隙
-    gutterHeight={10}   // 块之间的上下间隙
+    columns={4}             
+    columnWidth={200}     
+    gutterWidth={10}     
+    gutterHeight={10}   
   >
-    { // 此处放置需要渲染的块
+    { 
       list.map((item, index) => (
         <div key={index} className={...} style={...}>
           ...
