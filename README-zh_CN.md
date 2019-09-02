@@ -1,21 +1,20 @@
-# rc-pinterest-grid（react component）
-English | [简体中文](./README-zh_CN.md)   
+# 瀑布流布局组件 rc-pinterest-grid（react 组件）
+[English](./README.md) | 简体中文
 
-This is a react component which provides a pinterest layout grid, and :
-1. no need to provide height for each block.   
-2. the height of each block can be changed by user (etc reszie) while the grid can be relayouted automatically.  
-3. support automatically responsive.    
-4. support self-defined responsive.  
+功能特点：
+1. 无需设置每个块的高度，块的高度可动态自适应计算出来。
+2. 支持的每个块的高度 resize，当块的高度发生变化，布局能够自动更新
+3. 支持自动响应式。
+4. 支持精确自定义响应式布局。
 
 ![demo1](https://raw.githubusercontent.com/wangmengHB/rc-pinterest-grid/master/images/demo1.png)
 
-
-## install
+## 安装
 ```
 npm install --S rc-pinterest-grid
 ```
 
-## Usage
+## 使用说明
 ```jsx
 import PinterestGrid from 'rc-pinterest-grid';
 ```
@@ -35,32 +34,28 @@ import PinterestGrid from 'rc-pinterest-grid';
   }
 </PinterestGrid>
 ```
-
-### PinterestGrid Props
-| Prop Name     | Description     | Type     |  Required  | Default |
+### PinterestGrid 参数列表说明
+| 参数     | 说明     | 类型     |  是否必需  | 默认值 |
 | :----- | :------- | :------- | :----- | :----- |
-| columns | it specifies how may columns in one row | number | true  | 4     |
-| columnWidth | it specifies the width of every block | number | true | 200 |
-| gutterWidth | horizontal gutter between each block | number | false  | 10     |
-| gutterHeight | vertical gutter between each block | number | false | 10  |
-| responsive  | whether to be responsive responding with the screen width  | boolean  | false  | false    |
-| breakPoints | self-defined break point list for responsive, it works only if responsive props exist | BreakPoint[]  &#124; undefined | false   |   无   |
+| columns | 瀑布流布局的列数 | number | true  | 4     |
+| columnWidth | 瀑布流布局中每个块的宽度 | number | true | 200 |
+| gutterWidth | 块之间的水平间隙 | number | false  | 10     |
+| gutterHeight | 块之间的上下间隙 | number | false | 10  |
+| responsive  | 是否需要页面响应式  | boolean  | false  | false    |
+| breakPoints | 自定义页面断点对象列表，只有当 responsive 参数存在时生效 | BreakPoint[]  &#124; undefined | false   |   无   |
 
-Note：
-1. when `responsive` is true, and `breakPoints` not provided, it will be responsive in the default way.   
-2. when `responsive` is true, and `breakPoints` provided, it will follow the self-defined breakPoints to be responsive to screen width.  
+说明： 当 responsive 为 true 时，如果不提供自定义的断点列表 breakPoints, 则按照默认的方法计算页面的响应式。当 responsive 为 true 并且 breakPoints 存在时，按照自定义的响应式进行布局。
 
-
-### BreakPoint 
-| Prop Name     | Description     | Type     |  Required  | Default |
+### BreakPoint 对象
+| 参数     | 说明     | 类型     |  是否必需  | 默认值 |
 | :------- | :------- | :------- | :----- | :----- |
-| minScreenWidth | min screen width for this break point，it should be 0 for first break point | number | true  | 无     |
-| maxScreenWidth | max screen width for this break point, it should be Infinity for last break point | number | true  | 无 |
-| columnWidth  | under this break point，the width for every block  | number  | true  | 无    |
-| columns | under this break point, how many columns should be placed in one row | number | true   |   无   |
+| minScreenWidth | 该断点的最小页面宽度，第一个断点的最小页面宽度值应为 0 | number | true  | 无     |
+| maxScreenWidth | 该断点的最小页面宽度, 最后一个断点的最大页面宽度为 Infinity | number | true  | 无 |
+| columnWidth  | 在该断点下，每个块的宽度  | number  | true  | 无    |
+| columns | 在该断点下，布局的列数 | number | true   |   无   |
 
 
-## Use Case 1： simple usage
+## 使用示例 1： 简单示例
 ```jsx
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
@@ -89,7 +84,7 @@ ReactDOM.render(<Demo />, root);
 
 ```
 
-## Use Case 2：automatic responsive
+## 使用示例 2：自动响应式
 ```jsx
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
@@ -99,13 +94,13 @@ const list = [1,2,3,4,5,6,7,8,9,10,11,12];
 
 const Demo = () => (
   <PinterestGrid
-    columns={4}             
-    columnWidth={200}     
-    gutterWidth={10}     
-    gutterHeight={10}   
-    responsive={true}    
+    columns={4}             // 一共有多少列
+    columnWidth={200}     // 列宽度
+    gutterWidth={10}     // 块之间的水平间隙
+    gutterHeight={10}   // 块之间的上下间隙
+    responsive={true}             // 是否响应式
   >
-    { 
+    { // 此处放置需要渲染的块
       list.map((item, index) => (
         <div key={index} className={...} style={...}>
           ...
@@ -121,7 +116,7 @@ ReactDOM.render(<Demo />, root);
 ![demo3](https://raw.githubusercontent.com/wangmengHB/rc-pinterest-grid/master/images/demo3.png)
 
 
-## Use Case 3: self-defined responsive
+## 使用示例 3: 自定义响应式
 ```jsx
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
@@ -129,7 +124,7 @@ import PinterestGrid from 'rc-pinterest-grid';
 
 const list = [1,2,3,4,5,6,7,8,9,10,11,12];
 
-// self-defined break points
+// 自定义断点，更精确地定义断点布局，不同的断点下可以重新定义列数和列宽度。
 const breakPoints = [
   {
     minScreenWidth: 0,
@@ -153,14 +148,14 @@ const breakPoints = [
 
 const Demo = () => (
   <PinterestGrid
-    columns={4}            
-    columnWidth={200}      
-    gutterWidth={10}       
-    gutterHeight={10}      
-    responsive={true}             
-    breakPoints={breakPoints}     
+    columns={4}            // 一共有多少列
+    columnWidth={200}      // 列宽度
+    gutterWidth={10}       // 块之间的水平间隙
+    gutterHeight={10}      // 块之间的上下间隙
+    responsive={true}             // 是否响应式
+    breakPoints={breakPoints}     // 使用自定义断点模式
   >
-    { 
+    { // 此处放置需要渲染的块
       list.map((item, index) => (
         <div key={index} className={...} style={...}>
           ...
@@ -173,7 +168,5 @@ const Demo = () => (
 ReactDOM.render(<Demo />, root);
 ```
 
-
 ## License
 MIT
-

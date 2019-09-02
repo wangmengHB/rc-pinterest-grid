@@ -3,6 +3,7 @@
   "version": "0.0.1-rc.6",
   "description": "react component pinterest layout",
   "main": "dist/pinterest-grid.js",
+  "module": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
     "dist",
@@ -57,8 +58,8 @@
     "webpack-merge": "^4.2.1"
   },
   "peerDependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0"
   },
   "dependencies": {
     "enquire.js": "^2.1.6",
