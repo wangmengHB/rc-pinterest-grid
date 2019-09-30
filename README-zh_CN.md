@@ -41,10 +41,23 @@ import PinterestGrid from 'rc-pinterest-grid';
 | columnWidth | 瀑布流布局中每个块的宽度 | number | true | 200 |
 | gutterWidth | 块之间的水平间隙 | number | false  | 10     |
 | gutterHeight | 块之间的上下间隙 | number | false | 10  |
-| responsive  | 是否需要页面响应式  | boolean  | false  | false    |
-| breakPoints | 自定义页面断点对象列表，只有当 responsive 参数存在时生效 | BreakPoint[]  &#124; undefined | false   |   无   |
+| responsive  | 是否需要页面响应式以及响应式相关配置  | boolean &#124; ResponsiveConfigObject &#124; undefined   | false  | false    |
 
-说明： 当 responsive 为 true 时，如果不提供自定义的断点列表 breakPoints, 则按照默认的方法计算页面的响应式。当 responsive 为 true 并且 breakPoints 存在时，按照自定义的响应式进行布局。
+#### ResponsiveConfigObject
+```ts
+export interface ResponsiveConfigObject {
+  minPadding?: number;
+  maxWidth?: number;
+  customBreakPoints?: BreakPoint[];
+}
+```
+
+说明：    
+1. 如果 `responsive` 为 `false` 或不提供, 组件不会有响应式行为。     
+2. 如果 `responsive` 为 `true`, 组件会使用默认的 min-padding 和 max-width 来计算响应式行为。        
+3. 如果提供了 `responsive.minPadding`, 则组件会使用 `responsive.minPadding` 来计算响应式行为。      
+4. 如果提供了 `responsive.maxWidth` , 则组件会使用 `responsive.maxWidth` 来计算响应式行为。   
+5. 如果提供了 `responsive.customBreakPoints`, 则组件会完全使用自己提供的定制断点来进行响应式行为，不做额外的计算。  
 
 ### BreakPoint 对象
 | 参数     | 说明     | 类型     |  是否必需  | 默认值 |
@@ -66,9 +79,9 @@ const list = [1,2,3,4,5,6,7,8,9,10,11,12];
 const Demo = () => (
   <PinterestGrid
     columns={4}             // 一共有多少列
-    columnWidth={200}     // 列宽度
-    gutterWidth={10}     // 块之间的水平间隙
-    gutterHeight={10}   // 块之间的上下间隙
+    columnWidth={200}       // 列宽度
+    gutterWidth={10}        // 块之间的水平间隙
+    gutterHeight={10}       // 块之间的上下间隙
   >
     { // 此处放置需要渲染的块
       list.map((item, index) => (
@@ -95,10 +108,10 @@ const list = [1,2,3,4,5,6,7,8,9,10,11,12];
 const Demo = () => (
   <PinterestGrid
     columns={4}             // 一共有多少列
-    columnWidth={200}     // 列宽度
-    gutterWidth={10}     // 块之间的水平间隙
-    gutterHeight={10}   // 块之间的上下间隙
-    responsive={true}             // 是否响应式
+    columnWidth={200}       // 列宽度
+    gutterWidth={10}        // 块之间的水平间隙
+    gutterHeight={10}       // 块之间的上下间隙
+    responsive={true}       // 是否响应式
   >
     { // 此处放置需要渲染的块
       list.map((item, index) => (
@@ -148,12 +161,11 @@ const breakPoints = [
 
 const Demo = () => (
   <PinterestGrid
-    columns={4}            // 一共有多少列
-    columnWidth={200}      // 列宽度
-    gutterWidth={10}       // 块之间的水平间隙
-    gutterHeight={10}      // 块之间的上下间隙
-    responsive={true}             // 是否响应式
-    breakPoints={breakPoints}     // 使用自定义断点模式
+    columns={4}                                   // 一共有多少列
+    columnWidth={200}                             // 列宽度
+    gutterWidth={10}                              // 块之间的水平间隙
+    gutterHeight={10}                             // 块之间的上下间隙
+    responsive={{customBreakPoints:breakPoints}}  // 使用自定义断点模式
   >
     { // 此处放置需要渲染的块
       list.map((item, index) => (

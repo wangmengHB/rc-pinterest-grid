@@ -27,11 +27,16 @@ export interface PinterestGridProps {
   columns: number;
   gutterWidth: number;
   gutterHeight: number;
-  responsive?: boolean;
-  breakPoints?: BreakPoint[];
+  responsive?: boolean | ResponsiveConfigObject;
   style?: React.CSSProperties;
   className?: string;
   children?: React.ReactChildren;
+}
+
+export interface ResponsiveConfigObject {
+  minPadding?: number;
+  maxWidth?: number;
+  customBreakPoints?: BreakPoint[];
 }
 
 interface PinterestGridState {

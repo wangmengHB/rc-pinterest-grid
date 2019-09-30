@@ -1,17 +1,21 @@
 import * as React from 'react';
-const enquire = require('enquire.js');
 import PinterestGrid, { PinterestGridProps, BreakPoint } from './grid'
+const enquire = require('enquire.js');
 
 const MAX_WIDTH = 5000;
 const MIN_PADDING = 100;
 
-
-function createDefaultBreakPoints(columnWidth: number, gutterWidth: number): BreakPoint[] {
+function createDefaultBreakPoints(
+  columnWidth: number, 
+  gutterWidth: number, 
+  minPadding: number = MIN_PADDING, 
+  maxWidth: number = MAX_WIDTH
+): BreakPoint[] {
   const breakpoints: BreakPoint[] = [];
-  const NUM = Math.ceil((MAX_WIDTH - MIN_PADDING) / (columnWidth + gutterWidth));
+  const NUM = Math.ceil((maxWidth - minPadding) / (columnWidth + gutterWidth));
   for (let i = 0; i < NUM; i++) {
-    const min = i === 0? 0: (columnWidth + gutterWidth) * (i + 1) + MIN_PADDING;
-    const max = i === NUM? Infinity:(columnWidth + gutterWidth) * (i + 2) + MIN_PADDING;
+    const min = i === 0? 0: (columnWidth + gutterWidth) * (i + 1) + minPadding;
+    const max = i === NUM? Infinity:(columnWidth + gutterWidth) * (i + 2) + minPadding;
     const columns = i + 1;
     breakpoints.push({
       minScreenWidth: min,
@@ -38,20 +42,28 @@ export default function makeResponsive (
 
     constructor(props: PinterestGridProps) {
       super(props);
-      const { columnWidth, gutterWidth, columns, responsive, breakPoints } = this.props;
-      let brkPoints: BreakPoint[];
-
-      if (responsive) {
-        if (Array.isArray(breakPoints) && breakPoints.length > 0) {
-          brkPoints = breakPoints
-        } else {
-          brkPoints = createDefaultBreakPoints(columnWidth, gutterWidth);;
-        }
-      } else {
-        brkPoints = [];
+      const { columnWidth, gutterWidth, columns, responsive } = this.props;
+      let breakPoints: BreakPoint[];
+      let minPadding = MIN_PADDING, maxWidth = MAX_WIDTH;
+      if (responsive && typeof responsive === 'object') {
+        minPadding = typeof responsive.minPadding === 'number'? responsive.minPadding: minPadding;
+        maxWidth = typeof responsive.maxWidth === 'number'? responsive.maxWidth: maxWidth;
       }
 
-      this.breakpoints = brkPoints.map((brk: BreakPoint) => {
+      // false or undefined
+      if (!responsive) {
+        breakPoints = [];
+      } else if ( 
+        responsive && 
+        typeof responsive === 'object' && 
+        Array.isArray(responsive.customBreakPoints)
+      ) {
+        breakPoints = responsive.customBreakPoints;
+      } else {
+        breakPoints = createDefaultBreakPoints(columnWidth, gutterWidth, minPadding, maxWidth);
+      }
+      
+      this.breakpoints = breakPoints.map((brk: BreakPoint) => {
         const {columns, columnWidth, minScreenWidth, maxScreenWidth} = brk;   
         const breakpoint = [
           'screen', 
@@ -69,7 +81,7 @@ export default function makeResponsive (
         enquire.register(breakpoint, { match: handler });
       });
 
-      const currentBrk = getCurrentPoint(brkPoints);
+      const currentBrk = getCurrentPoint(breakPoints);
       
       this.state = {
         columns: currentBrk? currentBrk!.columns: columns,

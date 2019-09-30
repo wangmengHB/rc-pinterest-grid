@@ -43,12 +43,24 @@ import PinterestGrid from 'rc-pinterest-grid';
 | columnWidth | it specifies the width of every block | number | true | 200 |
 | gutterWidth | horizontal gutter between each block | number | false  | 10     |
 | gutterHeight | vertical gutter between each block | number | false | 10  |
-| responsive  | whether to be responsive responding with the screen width  | boolean  | false  | false    |
+| responsive  | to be responsive or not responding with the screen width  | boolean &#124; ResponsiveConfigObject &#124; undefined  | false  | false    |
 | breakPoints | self-defined break point list for responsive, it works only if responsive props exist | BreakPoint[]  &#124; undefined | false   |   None   |
 
+#### ResponsiveConfigObject
+```ts
+export interface ResponsiveConfigObject {
+  minPadding?: number;
+  maxWidth?: number;
+  customBreakPoints?: BreakPoint[];
+}
+```
+
 Note：
-1. when `responsive` is true, and `breakPoints` not provided, it will be responsive in the default way.   
-2. when `responsive` is true, and `breakPoints` provided, it will follow the self-defined breakPoints to be responsive to screen width.  
+1. if `responsive` is `false` or not provided(undefined), it will NOT be responsive.   
+2. if `responsive` is `true`, it will calculate responsive behavior with default min-padding and max-width.    
+3. if `responsive.minPadding` is provided, it will use `responsive.minPadding` to calculate responsive behavior.        
+4. if `responsive.maxWidth` is provided, it will use `responsive.maxWidth` to calculate responsive behavior.   
+5. if `responsive.customBreakPoints` is provided, it will follow the self-defined breakPoints to layout responsively to screen width.    
 
 
 ### BreakPoint 
@@ -157,8 +169,7 @@ const Demo = () => (
     columnWidth={200}      
     gutterWidth={10}       
     gutterHeight={10}      
-    responsive={true}             
-    breakPoints={breakPoints}     
+    responsive={{customBreakPoints: breakPoints}}    
   >
     { 
       list.map((item, index) => (
