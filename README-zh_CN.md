@@ -59,7 +59,7 @@ export interface ResponsiveConfigObject {
 4. 如果提供了 `responsive.maxWidth` , 则组件会使用 `responsive.maxWidth` 来计算响应式行为。   
 5. 如果提供了 `responsive.customBreakPoints`, 则组件会完全使用自己提供的定制断点来进行响应式行为，不做额外的计算。  
 
-### BreakPoint 对象
+### BreakPoint 对象 ( for responsive.customBreakPoints )
 | 参数     | 说明     | 类型     |  是否必需  | 默认值 |
 | :------- | :------- | :------- | :----- | :----- |
 | minScreenWidth | 该断点的最小页面宽度，第一个断点的最小页面宽度值应为 0 | number | true  | 无     |

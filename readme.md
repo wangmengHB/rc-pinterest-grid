@@ -62,7 +62,7 @@ Note：
 5. if `responsive.customBreakPoints` is provided, it will follow the self-defined breakPoints to layout responsively to screen width.    
 
 
-### BreakPoint 
+### BreakPoint ( for responsive.customBreakPoints )
 | Prop Name     | Description     | Type     |  Required  | Default |
 | :------- | :------- | :------- | :----- | :----- |
 | minScreenWidth | min screen width for this break point，it should be 0 for first break point | number | true  | None     |
