@@ -44,7 +44,6 @@ import PinterestGrid from 'rc-pinterest-grid';
 | gutterWidth | horizontal gutter between each block | number | false  | 10     |
 | gutterHeight | vertical gutter between each block | number | false | 10  |
 | responsive  | to be responsive or not responding with the screen width  | boolean &#124; ResponsiveConfigObject &#124; undefined  | false  | false    |
-| breakPoints | self-defined break point list for responsive, it works only if responsive props exist | BreakPoint[]  &#124; undefined | false   |   None   |
 
 #### ResponsiveConfigObject
 ```ts
