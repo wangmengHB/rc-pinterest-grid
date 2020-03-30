@@ -6,7 +6,7 @@ import doLayout, { Position } from './layout';
 // in other browser, we need polyfill.
 const ResizeObserver = (window as any).ResizeObserver || ResizeObserverPolyfill;
 
-const INITIAL_HEIGHT = 700;
+const INITIAL_HEIGHT = 500;
 const CSS_TRANSITION = 
   'left 500ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s,' + 
   'top 700ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s';
@@ -65,39 +65,64 @@ export default class PinterestGrid extends React.PureComponent<PinterestGridProp
   }
 
   private resizeObserver = new ResizeObserver((entries: any) => {
-    const { wrappedItems } = this.state;
-    const { columnWidth, gutterWidth, gutterHeight, columns } = this.props;
-    if (this.wrappedRefs.length !== wrappedItems.length) {
-      throw new Error('wrapped items not equals container\'s count.');
-    }
-    // block DOM size change, need to do layout
-    this.doLayout(null, { columnWidth, gutterWidth, gutterHeight, columns });
+    this.doLayout();
   });
 
-  componentDidMount() {
-    const { columnWidth, gutterWidth, gutterHeight, columns, children } = this.props;
+  componentWillMount() {
+    const { children } = this.props;
     const wrappedItems: any[] = this.createWrappedItems(children!);
-    this.doLayout(wrappedItems, { columnWidth, gutterWidth, gutterHeight, columns });
+    this.doLayout(wrappedItems);
+  }
+
+  componentDidMount() {
+    this.observeChildren();
   }
 
   componentDidUpdate(prevProps: PinterestGridProps) {
     const { columnWidth, gutterWidth, gutterHeight, columns, children } = this.props;
+    // children list count change
     if (children !== prevProps.children) {
       const wrappedItems = this.createWrappedItems(children!);
-      this.doLayout(wrappedItems, { columnWidth, gutterWidth, gutterHeight, columns });
+      this.doLayout(wrappedItems);
+      setTimeout(this.observeChildren)
     } 
     if ( columnWidth !== prevProps.columnWidth ||
       gutterHeight !== prevProps.gutterHeight ||
       gutterWidth !== prevProps.gutterWidth ||
       columns !== prevProps.columns
     ) {
-      this.doLayout(null, { columnWidth, gutterWidth, gutterHeight, columns });
+      this.doLayout();
     }   
   }
 
   componentWillUnmount() {
+    this.unobserveChildren();
+  }
+
+  observeChildren = () => {
+    const container: any = this.refs.container;
+    let len = 0;
+    if (container && container.children && container.children.length) {
+      len = container.children.length;
+    }
+    for (let i = 0; i < len; i++) {
+      this.resizeObserver.observe(container.children[i]);
+    }
+  }
+
+  unobserveChildren = () => {
+    const container: any = this.refs.container;
+    let len = 0;
+    if (container && container.children && container.children.length) {
+      len = container.children.length;
+    }
+    for (let i = 0; i < len; i++) {
+      this.resizeObserver.unobserve(container.children[i]);
+    }
     this.resizeObserver.disconnect();
   }
+
+
 
   createWrappedItems = (children: React.ReactChildren): any[] => {
     this.wrappedRefs = [];   
@@ -105,23 +130,9 @@ export default class PinterestGrid extends React.PureComponent<PinterestGridProp
     if (!Array.isArray(items)) {
       return [];
     }  
-    const wrappedItems = items.map((item: any, index: number) => {
-      // provide a big inital height, in order to make every item
-      // showing from bottom to up. 
-      const props = {
-        height: item.props.height || INITIAL_HEIGHT
-      }
+    const wrappedItems = items.map((item: any, index: number) => {      
       return (
-        <div 
-          ref={ (_) => {
-            if (_) {
-              this.wrappedRefs[index] = _ ;
-              this.resizeObserver.observe(_);
-            }
-          }}
-          key={item.key || `pinterest-${index}`}
-          {...props}
-        >
+        <div key={item.key || `pinterest-${index}`}>
           {item}
         </div>
       )
@@ -130,19 +141,24 @@ export default class PinterestGrid extends React.PureComponent<PinterestGridProp
   }
 
 
-  doLayout = (wrappedItems: any[] | null, {columnWidth, gutterWidth, gutterHeight, columns}: PinterestGridProps) => {
+  doLayout = (wrappedItems?: any[]) => {
+    const { columnWidth, gutterWidth, gutterHeight, columns } = this.props;
+    const container: any = this.refs.container;
     let nextWrappedItems: any[] = this.state.wrappedItems;
     if (Array.isArray(wrappedItems)) {
       nextWrappedItems = wrappedItems;
     }
+    const itemHeights = nextWrappedItems.map((item, index) => {
+      if (container && container.children && container.children[index]) {
+        return container.children[index].clientHeight;
+      }
+      return INITIAL_HEIGHT;
+    })
+
     this.setState({
       wrappedItems: nextWrappedItems,           
       ...doLayout(
-        nextWrappedItems.map((item, index: number) => 
-          this.wrappedRefs[index]
-            ? this.wrappedRefs[index].clientHeight 
-            : item.props.height || INITIAL_HEIGHT
-        ), 
+        itemHeights, 
         { columnWidth, gutterWidth, gutterHeight, columns }
       )
     });
@@ -161,6 +177,7 @@ export default class PinterestGrid extends React.PureComponent<PinterestGridProp
           boxSizing: 'content-box',             
         }}
         className={className}
+        ref="container"
       >
         {
           wrappedItems.map((item, index) => {

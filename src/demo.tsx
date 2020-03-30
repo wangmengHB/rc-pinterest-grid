@@ -52,7 +52,7 @@ class TestBlock extends React.Component<TestBlockProps>{
       <div>
         {header}
       </div>
-      <img style={{width:'100%'}} src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564391822552&di=67f3e85dc3901ffda923afa8e1db4508&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fb2b56243415c67144c787aebd84ed278f929cae83e2a-7lhIZy_fw658"/>
+      <img style={{width:'100%'}} src="https://gw.alipayobjects.com/mdn/rms_ace14a/afts/img/A*EmcPSpdHbUwAAAAAAAAAAABkARQnAQ"/>
       <div>
         {body}
       </div>
