@@ -1,6 +1,6 @@
 {
   "name": "rc-pinterest-grid",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "react component pinterest layout",
   "main": "dist/pinterest-grid.js",
   "module": "lib/index.js",
@@ -12,7 +12,8 @@
   "scripts": {
     "build": "rm -rf lib && rm -rf dist && tsc -declaration & webpack --config ./build/webpack.prod.conf.js",
     "watch": "webpack --watch --config ./build/webpack.dev.conf.js",
-    "dev": "webpack-dev-server --inline --progress --config ./build/webpack.dev.conf.js"
+    "dev": "webpack-dev-server --inline --progress --config ./build/webpack.dev.conf.js",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
